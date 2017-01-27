@@ -17,6 +17,19 @@
 
 const Route = use('Route')
 
-//Route.on('/').render('welcome')
+Route.get('/home','ListController.show')
 
 Route.get('/','ListController.show');
+
+Route.get('/login', 'AuthController.index')
+Route.post('/login', 'AuthController.login')
+
+Route.get('/register', 'RegisterController.index')
+Route.post('register', 'RegisterController.doRegister')
+
+Route.get('/logout', 'AuthController.logout')
+
+
+Route.get('/got', function * (request, response) {
+    response.status(200).json({ user: 'prosper' })
+}).middleware('auth')
